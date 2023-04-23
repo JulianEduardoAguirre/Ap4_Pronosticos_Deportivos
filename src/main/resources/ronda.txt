@@ -1,2 +1,8 @@
 ronda1,partido1,EQUIPO1,EQUIPO2,2,1
 ronda1,partido2,EQUIPO3,EQUIPO4,3,3
+ronda2,partido1,EQUIPO1,EQUIPO3,2,1
+ronda2,partido2,EQUIPO4,EQUIPO2,1,3
+ronda3,partido1,EQUIPO1,EQUIPO2,2,1
+ronda3,partido2,EQUIPO3,EQUIPO4,3,3
+ronda4,partido1,EQUIPO1,EQUIPO3,2,1
+ronda4,partido2,EQUIPO4,EQUIPO2,1,3

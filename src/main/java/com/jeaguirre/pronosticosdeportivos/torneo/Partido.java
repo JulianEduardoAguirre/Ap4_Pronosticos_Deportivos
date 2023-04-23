@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jeaguirre.pronosticosdeportivos;
+package com.jeaguirre.pronosticosdeportivos.torneo;
 
+import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumLocalia;
+import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumEquipo;
+import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumResultado;
 import java.util.Arrays;
 import java.util.Objects;
 

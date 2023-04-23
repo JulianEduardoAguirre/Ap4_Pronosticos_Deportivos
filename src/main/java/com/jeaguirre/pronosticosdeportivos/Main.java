@@ -5,6 +5,15 @@
  */
 package com.jeaguirre.pronosticosdeportivos;
 
+import com.jeaguirre.pronosticosdeportivos.jugador.JugadorRonda;
+import com.jeaguirre.pronosticosdeportivos.jugador.JugadorApuesta;
+import com.jeaguirre.pronosticosdeportivos.jugador.Jugador;
+import com.jeaguirre.pronosticosdeportivos.torneo.Ronda;
+import com.jeaguirre.pronosticosdeportivos.torneo.Partido;
+import com.jeaguirre.pronosticosdeportivos.torneo.Torneo;
+import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumLocalia;
+import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumEquipo;
+import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumResultado;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
