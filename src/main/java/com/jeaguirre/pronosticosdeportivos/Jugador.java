@@ -41,6 +41,16 @@ public class Jugador {
         return pronostico.get(rondaId);
     }
     
+    public boolean tieneJugadorRonda(String rondaId){
+        return pronostico.containsKey(rondaId);
+    }
+
+    @Override
+    public String toString() {
+        return "Jugador{" + "nombre=" + nombre + ", puntos=" + puntos + ", pronostico=" + pronostico + '}';
+    }
+    
+    
     
     
 }

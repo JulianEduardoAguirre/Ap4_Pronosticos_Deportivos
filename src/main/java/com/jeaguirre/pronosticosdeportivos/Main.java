@@ -54,6 +54,7 @@ public class Main {
             }
         });
         
+        torneo.mostrarRondas();
         
         //Generación de la apuesta de un jugador
         HashMap<String, Jugador> jugadores = new HashMap();
@@ -71,10 +72,24 @@ public class Main {
                 jugadores.put(jugadorNombre, jugador);
             }
             
+            if(!jugadores.get(jugadorNombre).tieneJugadorRonda(rondaId)){
+                JugadorRonda jugadorRonda = new JugadorRonda(rondaId);
+                jugadores.get(jugadorNombre).agregarJugadorRonda(jugadorRonda);
+            }
+            
+            if(!jugadores.get(jugadorNombre).getJugadorRonda(rondaId).tieneJugadorApuesta(partidoId)){
+                JugadorApuesta jugadorApuesta = new JugadorApuesta(partidoId, equipoElegido, resultado);
+                jugadores.get(jugadorNombre).getJugadorRonda(rondaId).agregarJugadorApuesta(jugadorApuesta);
+            }
             
             
         });
 
+        jugadores.forEach((nombreJugador, jugadorRonda) -> {
+            System.out.println(nombreJugador);
+        } );
+        
+        
     }
     
 }

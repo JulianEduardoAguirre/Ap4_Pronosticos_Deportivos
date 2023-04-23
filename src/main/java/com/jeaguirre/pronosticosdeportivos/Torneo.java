@@ -36,5 +36,11 @@ public class Torneo {
         return rondas.get(rondaId);
     }
     
+    public void mostrarRondas(){
+        rondas.forEach((k,v) -> {
+            System.out.println(v);
+        });
+    }
+    
     
 }

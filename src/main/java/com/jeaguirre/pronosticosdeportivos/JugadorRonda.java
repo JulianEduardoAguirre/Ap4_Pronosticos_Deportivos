@@ -32,4 +32,15 @@ public class JugadorRonda {
         return jugadorRonda.get(partidoId);
     }
     
+    public boolean tieneJugadorApuesta(String partidoId){
+        return jugadorRonda.containsKey(partidoId);
+    }
+
+    @Override
+    public String toString() {
+        return "JugadorRonda{" + "rondaId=" + rondaId + ", jugadorRonda=" + jugadorRonda + '}';
+    }
+    
+    
+    
 }
