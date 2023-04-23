@@ -1,0 +1,2 @@
+ronda1,partido1,EQUIPO1,EQUIPO2,2,1
+ronda1,partido2,EQUIPO3,EQUIPO4,3,3

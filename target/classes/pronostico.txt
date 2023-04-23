@@ -1,0 +1,2 @@
+julián,ronda1,partido1,LOCAL,GANADOR
+julián,ronda1,partido2,LOCAL,EMPATE
