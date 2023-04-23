@@ -14,6 +14,8 @@ import com.jeaguirre.pronosticosdeportivos.torneo.Torneo;
 import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumLocalia;
 import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumEquipo;
 import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumResultado;
+import com.jeaguirre.pronosticosdeportivos.juego.Juego;
+import com.jeaguirre.pronosticosdeportivos.jugador.Publico;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -38,76 +40,20 @@ public class Main {
         
         //Generación de la ronda
         List<String> lineasRonda = Files.readAllLines(Paths.get(basePath + archivoRonda));
-        
         Torneo torneo = new Torneo("Primer torneo");
-        lineasRonda.forEach((linea) -> {
-            String[] datosUnaLinea = linea.split(",");
-            String rondaId = datosUnaLinea[0];
-            String partidoId = datosUnaLinea[1];
-            EnumEquipo local = EnumEquipo.valueOf(datosUnaLinea[2]);
-            EnumEquipo visitante = EnumEquipo.valueOf(datosUnaLinea[3]);
-            Integer golesLocal = Integer.parseInt(datosUnaLinea[4]);
-            Integer golesVisitante = Integer.parseInt(datosUnaLinea[5]);
-            
-            if(!torneo.getRondas().containsKey(rondaId)){
-                Ronda ronda = new Ronda(rondaId);
-                torneo.agregarRonda(ronda);
-            }
-            
-            if(!torneo.getRonda(rondaId).getPartidos().containsKey(partidoId)){
-                Partido partido = new Partido(partidoId);
-                partido.setEnumEquipo(local, visitante);
-                partido.setGoles(golesLocal, golesVisitante);
-                torneo.getRonda(rondaId).agregarPartido(partido);
-            }
-        });
-        
+        torneo.generarTorneo(lineasRonda);
+//      torneo.mostrarRondas();
         
         //Generación de la apuesta de un jugador
-        HashMap<String, Jugador> jugadores = new HashMap();
         List<String> lineasJugadores = Files.readAllLines(Paths.get(basePath + archivoPronostico));
-        lineasJugadores.forEach( (linea) -> {
-            String[] datosUnaLinea = linea.split(",");
-            String jugadorNombre = datosUnaLinea[0];
-            String rondaId = datosUnaLinea[1];
-            String partidoId = datosUnaLinea[2];
-            EnumLocalia equipoElegido = EnumLocalia.valueOf(datosUnaLinea[3]);
-            EnumResultado resultado = EnumResultado.valueOf(datosUnaLinea[4]);
-            
-            if(!jugadores.containsKey(jugadorNombre)){
-                Jugador jugador = new Jugador(jugadorNombre, jugadorNombre);
-                jugadores.put(jugadorNombre, jugador);
-            }
-            
-            if(!jugadores.get(jugadorNombre).tieneJugadorRonda(rondaId)){
-                JugadorRonda jugadorRonda = new JugadorRonda(rondaId);
-                jugadores.get(jugadorNombre).agregarJugadorRonda(jugadorRonda);
-            }
-            
-            if(!jugadores.get(jugadorNombre).getJugadorRonda(rondaId).tieneJugadorApuesta(partidoId)){
-                JugadorApuesta jugadorApuesta = new JugadorApuesta(partidoId, equipoElegido, resultado);
-                jugadores.get(jugadorNombre).getJugadorRonda(rondaId).agregarJugadorApuesta(jugadorApuesta);
-            }
-            
-            
-        });
-
-        //Procesamiento de los resultados finales del partido y las apuestas del jugador
-        torneo.getRondas().forEach((rondaId, ronda) -> {
-            ronda.getPartidos().forEach((partidoId, partido) -> {
-                jugadores.forEach((jugadorNombre, jugador) -> {
-                    
-                    if(jugador.getJugadorRonda(rondaId).getJugadorApuesta(partidoId).getEquipoResultado().equals(partido.calcularResultado(jugador.getJugadorRonda(rondaId).getJugadorApuesta(partidoId).getEquipoElegido()))){
-                        jugador.sumarPuntos(1);
-                    }
-                });
-            });
-        });
+        Publico publico = new Publico();
+        publico.generarJugadores(lineasJugadores);
+//      publico.mostrarJugadores();
         
-        //Mostrando la cantidad de puntos del jugador
-        jugadores.forEach((jugadorNombre, jugador) -> {
-            System.out.println(jugadorNombre + ": " + jugador.getPuntos() + " puntos.");
-        });
+        //Generación del juego
+        Juego juego = new Juego();
+        juego.procesarJuego(torneo, publico);
+        juego.mostrarResultados(publico);
         
     }
     

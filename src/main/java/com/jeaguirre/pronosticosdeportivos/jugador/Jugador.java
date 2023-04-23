@@ -15,12 +15,14 @@ public class Jugador {
     private final String id;
     private final String nombre;
     private int puntos;
+    private int aciertos;
     private final HashMap<String, JugadorRonda> pronostico;
 
     public Jugador(String id, String nombre) {
         this.id = id;
         this.nombre = nombre;
         puntos = 0;
+        aciertos = 0;
         pronostico = new HashMap();
     }
     
@@ -31,6 +33,10 @@ public class Jugador {
     
     public int getPuntos(){
         return puntos;
+    }
+    
+    public int getAciertos(){
+        return aciertos;
     }
     
     public void agregarJugadorRonda(JugadorRonda jugadorRonda){
@@ -47,6 +53,10 @@ public class Jugador {
     
     public void sumarPuntos(int multiplicador){
         puntos += 1*multiplicador;
+    }
+    
+    public void sumarAciertos(){
+        aciertos++;
     }
 
     @Override
