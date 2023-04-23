@@ -52,6 +52,7 @@ public class Main {
         
         //Generación del juego
         Juego juego = new Juego();
+                
         juego.procesarJuego(torneo, publico);
         juego.mostrarResultados(publico);
         
