@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Jugador {
     private final String id;
     private final String nombre;
-    private final int puntos;
+    private int puntos;
     private final HashMap<String, JugadorRonda> pronostico;
 
     public Jugador(String id, String nombre) {
@@ -43,6 +43,10 @@ public class Jugador {
     
     public boolean tieneJugadorRonda(String rondaId){
         return pronostico.containsKey(rondaId);
+    }
+    
+    public void sumarPuntos(int multiplicador){
+        puntos += 1*multiplicador;
     }
 
     @Override

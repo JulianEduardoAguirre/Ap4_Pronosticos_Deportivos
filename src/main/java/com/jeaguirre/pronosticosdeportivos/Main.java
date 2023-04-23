@@ -20,11 +20,10 @@ public class Main {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        // TODO code application logic here
         String basePath = new File("").getAbsolutePath().concat("\\src\\main\\resources");
-        //System.out.println(basePath);
         String archivoRonda = "\\ronda.txt";
         String archivoPronostico = "\\pronostico.txt";
         
@@ -54,7 +53,6 @@ public class Main {
             }
         });
         
-        torneo.mostrarRondas();
         
         //Generación de la apuesta de un jugador
         HashMap<String, Jugador> jugadores = new HashMap();
@@ -85,10 +83,22 @@ public class Main {
             
         });
 
-        jugadores.forEach((nombreJugador, jugadorRonda) -> {
-            System.out.println(nombreJugador);
-        } );
+        //Procesamiento de los resultados finales del partido y las apuestas del jugador
+        torneo.getRondas().forEach((rondaId, ronda) -> {
+            ronda.getPartidos().forEach((partidoId, partido) -> {
+                jugadores.forEach((jugadorNombre, jugador) -> {
+                    
+                    if(jugador.getJugadorRonda(rondaId).getJugadorApuesta(partidoId).getEquipoResultado().equals(partido.calcularResultado(jugador.getJugadorRonda(rondaId).getJugadorApuesta(partidoId).getEquipoElegido()))){
+                        jugador.sumarPuntos(1);
+                    }
+                });
+            });
+        });
         
+        //Mostrando la cantidad de puntos del jugador
+        jugadores.forEach((jugadorNombre, jugador) -> {
+            System.out.println(jugadorNombre + ": " + jugador.getPuntos() + " puntos.");
+        });
         
     }
     
