@@ -16,7 +16,18 @@ import java.util.HashMap;
  */
 public class Juego {
     
-    int puntosPorPartido = 3;
+    private int puntosPorPartido;
+    
+    public Juego(){
+        puntosPorPartido = 3;
+    }
+    
+    public void setPuntoPorPartido(int valor){
+        if(valor >= 1 && valor < 10){
+            puntosPorPartido = valor;
+        }
+    }
+    
     public void procesarJuego(Torneo torneo, Publico publico){
         HashMap<String, Jugador> jugadores = publico.getJugadores();
         

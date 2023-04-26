@@ -5,6 +5,7 @@
  */
 package com.jeaguirre.pronosticosdeportivos;
 
+import com.jeaguirre.pronosticosdeportivos.archivos.Importador;
 import com.jeaguirre.pronosticosdeportivos.jugador.JugadorRonda;
 import com.jeaguirre.pronosticosdeportivos.jugador.JugadorApuesta;
 import com.jeaguirre.pronosticosdeportivos.jugador.Jugador;
@@ -34,7 +35,6 @@ public class Main {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        String basePath = new File("").getAbsolutePath().concat("\\src\\main\\resources");
 
         //Archivos para un torneo de 4 equipos, 3 rondas, 2 partidos por ronda - 5 personas
 //        String archivoRonda = "\\ronda.txt";
@@ -45,21 +45,21 @@ public class Main {
         String archivoRonda = "\\ronda_completa.txt";
         String archivoPronostico = "\\pronostico_completo.txt";
         
+        
+        
         //Generación de la ronda
-        List<String> lineasRonda = Files.readAllLines(Paths.get(basePath + archivoRonda));
         Torneo torneo = new Torneo("Primer torneo");
-        torneo.generarTorneo(lineasRonda);
+        torneo.generarTorneo(Importador.leerArchivoTxt(archivoRonda));
 //      torneo.mostrarRondas();
         
         //Generación de la apuesta de un jugador
-        List<String> lineasJugadores = Files.readAllLines(Paths.get(basePath + archivoPronostico));
         Publico publico = new Publico();
-        publico.generarJugadores(lineasJugadores);
+        publico.generarJugadores(Importador.leerArchivoTxt(archivoPronostico));
 //      publico.mostrarJugadores();
         
         //Generación del juego
         Juego juego = new Juego();
-                
+//        juego.setPuntoPorPartido(5);
         juego.procesarJuego(torneo, publico);
         juego.mostrarResultados(publico);
         
