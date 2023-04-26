@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jeaguirre.pronosticosdeportivos;
+package com.jeaguirre.pronosticosdeportivos.enumeraciones;
 
 /**
  *
  * @author aguir
  */
-public enum EnumLocalia {
-    LOCAL, VISITANTE;
+public enum EnumResultado {
+    GANADOR, EMPATE, PERDEDOR;
 }
