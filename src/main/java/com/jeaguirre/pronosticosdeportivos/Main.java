@@ -35,8 +35,15 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         String basePath = new File("").getAbsolutePath().concat("\\src\\main\\resources");
-        String archivoRonda = "\\ronda.txt";
-        String archivoPronostico = "\\pronostico.txt";
+
+        //Archivos para un torneo de 4 equipos, 3 rondas, 2 partidos por ronda - 5 personas
+//        String archivoRonda = "\\ronda.txt";
+//        String archivoPronostico = "\\pronostico.txt";
+
+
+        //Archivos para un torneo de 8 equipos, 7 rondas, 4 partidos por ronda - 10 personas
+        String archivoRonda = "\\ronda_completa.txt";
+        String archivoPronostico = "\\pronostico_completo.txt";
         
         //Generación de la ronda
         List<String> lineasRonda = Files.readAllLines(Paths.get(basePath + archivoRonda));

@@ -15,6 +15,8 @@ import java.util.HashMap;
  * @author aguir
  */
 public class Juego {
+    
+    int puntosPorPartido = 3;
     public void procesarJuego(Torneo torneo, Publico publico){
         HashMap<String, Jugador> jugadores = publico.getJugadores();
         
@@ -23,7 +25,7 @@ public class Juego {
                 jugadores.forEach((jugadorNombre, jugador) -> {
                     
                     if(jugador.getJugadorRonda(rondaId).getJugadorApuesta(partidoId).getEquipoResultado().equals(partido.calcularResultado(jugador.getJugadorRonda(rondaId).getJugadorApuesta(partidoId).getEquipoElegido()))){
-                        jugador.sumarPuntos(1);
+                        jugador.sumarPuntos(puntosPorPartido);
                         jugador.sumarAciertos();
                     }
                 });
