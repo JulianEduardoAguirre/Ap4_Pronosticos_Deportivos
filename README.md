@@ -60,3 +60,23 @@ _pronostico.txt_
 * Utilizar la herramienta Maven y su estructura de proyecto.
 * Imprimir por pantalla el nombre de cada persona, el puntaje total y la cantidad de pronósticos acertados.
 * Implementar un test (al menos uno) que calcule el puntaje de una persona en 2 (dos) rondas consecutivas.
+
+En este caso, las clases creadas en la etapa anterior estaban preparadas para recorrer sendos archivos de texto, con el formato establecido, y generando automáticamente lan N-1 rondas con sus N/2 partidos, como también el número P de personas en el otro. (N es el número de equipos, el cual debe ser par).
+El archivo de texto con el torneo/campeonato se creo usando el fixture generado en https://www.campioni.biz/spanish/calendario/crea_calendario10.php?pais=Spain.
+Para el caso del archivo de pronósticos de los jugadores, se generó con un pequeño programa aparte, asignando apuestas de manera aleatoria.
+
+***
+
+*ENTREGA 3*
+
+* Los pronósticos deben poder leerse desde una base de datos MySQL.
+* Se debe poder configurar la cantidad de puntos que se otorgan cuando se acierta un resultado.
+* Se agregan dos reglas para la asignación de puntajes de los personajes:
+_Se suman puntos extra cuando se aciertan todos los resultados de una ronda._
+_Se suman puntos extra cuando se aciertan todos los resultados de una fase (Modificar los archivos para agregar este dato) sobre un equipo. Se debe considerar que una fase es un conjunto de rondas._
+ 
+Se recomienda analizar qué estrategia se puede aplicar para incluir otras nuevas reglas con el menor impacto posible, de forma simple.
+
+En esta entrega, el programa debe:
+ * Estar actualizado en el repositorio de GitHub
+ * Recibir como argumento un archivo con los resultados y otro con configuración (conexión a la BBDD, puntaje por partido ganado, puntos extra, etc)
