@@ -46,7 +46,7 @@ public class Juego {
     
     public void mostrarResultados(Publico publico){
         publico.getJugadores().forEach((jugadorNombre, jugador) -> {
-            System.out.println(jugadorNombre + ": " + jugador.getPuntos() + " puntos. Número de aciertos: " + jugador.getAciertos());
+            System.out.println(jugadorNombre + ":\n\tPuntos: " + jugador.getPuntos() + " (" + jugador.getAciertos() + " aciertos).");
         });       
     }
 }
