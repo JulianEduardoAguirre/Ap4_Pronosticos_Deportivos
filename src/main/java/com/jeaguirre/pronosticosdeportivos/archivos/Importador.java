@@ -16,7 +16,7 @@ import java.util.List;
  * @author aguir
  */
 public class Importador {
-    private static String basePath = new File("").getAbsolutePath().concat("\\src\\main\\resources");
+    private static String basePath = new File("").getAbsolutePath().concat("\\src\\main\\resources\\");
     
     public static List<String> leerArchivoTxt(String archivo) throws IOException{
         List<String> lineas = Files.readAllLines(Paths.get(basePath + archivo));
