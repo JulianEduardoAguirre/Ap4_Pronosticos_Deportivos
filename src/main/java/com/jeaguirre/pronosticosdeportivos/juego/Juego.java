@@ -5,10 +5,13 @@
  */
 package com.jeaguirre.pronosticosdeportivos.juego;
 
+import com.jeaguirre.pronosticosdeportivos.archivos.Importador;
 import com.jeaguirre.pronosticosdeportivos.jugador.Jugador;
 import com.jeaguirre.pronosticosdeportivos.jugador.Publico;
 import com.jeaguirre.pronosticosdeportivos.torneo.Torneo;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  *
@@ -16,7 +19,10 @@ import java.util.HashMap;
  */
 public class Juego {
     
+    private Scanner leer = new Scanner(System.in).useDelimiter("\n");
     private int puntosPorPartido;
+    private Torneo torneo;
+    private Publico publico;
     
     public Juego(){
         puntosPorPartido = 3;
@@ -28,7 +34,53 @@ public class Juego {
         }
     }
     
-    public void procesarJuego(Torneo torneo, Publico publico){
+    public void generarJuego() throws IOException, Exception{
+        System.out.println("Generación del torneo");
+        String archivoTorneo = "";
+        String archivoConfiguracion = "";
+        do{
+            System.out.println("Ingrese el nombre del archivo (txt): ");
+            archivoTorneo = leer.next();
+        } while (archivoTorneo.equals(""));
+        
+        do{
+            System.out.println("Ingrese el nombre del archivo de configuración (con su extensión): ");
+            archivoConfiguracion = leer.next();
+        } while (archivoConfiguracion.equals(""));
+        
+        //Generación del Torneo
+        this.torneo = new Torneo("Primer torneo");
+        torneo.generarTorneo(Importador.leerArchivoTxt(archivoTorneo + ".txt"));
+        
+        //Generación del público desde la BBDD
+        this.publico = new Publico();
+//      publico.generarJugadores(Importador.leerArchivoTxt(archivoPronostico));
+        publico.generarJugadoresDB();
+        System.out.println(publico.getJugadores().toString());
+        
+        
+        
+        
+    }
+    
+    public void procesarJuego(){
+        HashMap<String, Jugador> jugadores = this.publico.getJugadores();
+        
+        this.torneo.getRondas().forEach((rondaId, ronda) -> {
+            ronda.getPartidos().forEach((partidoId, partido) -> {
+                jugadores.forEach((jugadorNombre, jugador) -> {
+                    
+                    if(jugador.getJugadorRonda(rondaId).getJugadorApuesta(partidoId).getEquipoResultado().equals(partido.calcularResultado(jugador.getJugadorRonda(rondaId).getJugadorApuesta(partidoId).getEquipoElegido()))){
+                        jugador.sumarPuntos(this.puntosPorPartido);
+                        jugador.sumarAciertos();
+                    }
+                });
+            });
+        });
+    }
+    
+    
+    public void procesarJuegoExterno(Torneo torneo, Publico publico){
         HashMap<String, Jugador> jugadores = publico.getJugadores();
         
         torneo.getRondas().forEach((rondaId, ronda) -> {
@@ -44,9 +96,21 @@ public class Juego {
         });
     }
     
-    public void mostrarResultados(Publico publico){
+    public void mostrarResultadosExterno(Publico publico){
         publico.getJugadores().forEach((jugadorNombre, jugador) -> {
             System.out.println(jugadorNombre + ":\n\tPuntos: " + jugador.getPuntos() + " (" + jugador.getAciertos() + " aciertos).");
         });       
+    }
+    
+    public void mostrarResultados(){
+        this.publico.getJugadores().forEach((jugadorNombre, jugador) -> {
+            System.out.println(jugadorNombre + ":\n\tPuntos: " + jugador.getPuntos() + " (" + jugador.getAciertos() + " aciertos).");
+        });       
+    }
+    
+    public void juegoInterno() throws Exception{
+        this.generarJuego();
+        this.procesarJuego();
+        this.mostrarResultados();
     }
 }

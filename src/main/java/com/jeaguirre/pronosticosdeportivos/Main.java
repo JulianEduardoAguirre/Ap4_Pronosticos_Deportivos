@@ -8,11 +8,8 @@ package com.jeaguirre.pronosticosdeportivos;
 import com.jeaguirre.pronosticosdeportivos.archivos.Importador;
 import com.jeaguirre.pronosticosdeportivos.torneo.Torneo;
 import com.jeaguirre.pronosticosdeportivos.juego.Juego;
-import com.jeaguirre.pronosticosdeportivos.jugador.Jugador;
 import com.jeaguirre.pronosticosdeportivos.jugador.Publico;
-import com.jeaguirre.pronosticosdeportivos.persistencia.ApuestaDAO;
 import java.io.IOException;
-import java.util.HashMap;
 
 /**
  *
@@ -26,31 +23,32 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, Exception {
 
-        //Archivos para un torneo de 4 equipos, 3 rondas, 2 partidos por ronda - 5 personas
-//        String archivoRonda = "\\ronda.txt";
-//        String archivoPronostico = "\\pronostico.txt";
-
-
+        ///***** GENERACION POR ARCHIVOS - ETAPA 2 *****
         //Archivos para un torneo de 8 equipos, 7 rondas, 4 partidos por ronda - 10 personas
-        String archivoRonda = "\\ronda_completa.txt";
-        String archivoPronostico = "\\pronostico_completo.txt";
+//        String archivoRonda = "\\torneo_8_equipos_1.txt";        
+//        String archivoPronostico = "\\pronostico_completo.txt";
                 
-        //Generación de la ronda
-        Torneo torneo = new Torneo("Primer torneo");
-        torneo.generarTorneo(Importador.leerArchivoTxt(archivoRonda));
-//      torneo.mostrarRondas();
+        //Generación del torneo
+//        Torneo torneo = new Torneo("Primer torneo");
+//        torneo.generarTorneo(Importador.leerArchivoTxt(archivoRonda));
         
-        //Generación de la apuesta de un jugador
-        Publico publico = new Publico();
-//        publico.generarJugadores(Importador.leerArchivoTxt(archivoPronostico));
-        publico.generarJugadoresDB();
-//      publico.mostrarJugadores();
+        //Generación de los jugadores (Publico)
+//        Publico publico = new Publico();
+        //Si se lee desde un archivo de texto
+//      publico.generarJugadores(Importador.leerArchivoTxt(archivoPronostico));
+        //Si se lee desde una base de datos
+//        publico.generarJugadoresDB();
         
+
+        //********* GENERACION DESDE LA CLASE JUEGO - ETAPA 3 **********
         //Generación del juego
         Juego juego = new Juego();
-//        juego.setPuntoPorPartido(5);
-        juego.procesarJuego(torneo, publico);
-        juego.mostrarResultados(publico);
+//      juego.setPuntoPorPartido(5);
+//      juego.procesarJuegoExterno(torneo, publico);
+//        juego.mostrarResultadosExterno(publico);
+        
+        //Usando el mismo método en juego
+        juego.juegoInterno();
         
     }
     
