@@ -20,7 +20,7 @@ import org.json.simple.JSONObject;
  */
 public class Juego {
     
-    private Scanner leer = new Scanner(System.in).useDelimiter("\n");
+    private final Scanner leer = new Scanner(System.in).useDelimiter("\n");
     private Integer puntosPorPartido;
     private Torneo torneo;
     private Publico publico;

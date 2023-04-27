@@ -27,7 +27,6 @@ public class ApuestaDAO extends DAO{
                             "ORDER BY jugador.id, ronda.id, partido.id ASC;";
 
     public ApuestaDAO(){
-        
     }
     
     public ApuestaDAO(String usuario, String password, String database) {

@@ -19,17 +19,17 @@ import org.json.simple.parser.*;
  * @author aguir
  */
 public class Importador {
-    private static final String basePath = new File("").getAbsolutePath().concat("\\src\\main\\resources\\");
+    private static final String BASEPATH = new File("").getAbsolutePath().concat("\\src\\main\\resources\\");
     
     public static List<String> leerArchivoTxt(String archivo) throws IOException{
-        List<String> lineas = Files.readAllLines(Paths.get(basePath + archivo));
+        List<String> lineas = Files.readAllLines(Paths.get(BASEPATH + archivo));
         return lineas;
     }
     
     public static JSONObject leerArchivoJson(String archivo) {
         JSONObject js = null;
         try {
-            Object ob = new JSONParser().parse(new FileReader(basePath + archivo + ".json"));
+            Object ob = new JSONParser().parse(new FileReader(BASEPATH + archivo + ".json"));
             js = (JSONObject) ob;
         } catch (IOException | ParseException e) {
             System.out.println(e.getMessage());
