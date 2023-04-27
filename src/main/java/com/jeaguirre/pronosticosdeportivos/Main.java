@@ -43,7 +43,7 @@ public class Main {
         //********* GENERACION DESDE LA CLASE JUEGO - ETAPA 3 **********
         //Generación del juego
         Juego juego = new Juego();
-//      juego.setPuntoPorPartido(5);
+//        juego.setPuntoPorPartido(2);
 //      juego.procesarJuegoExterno(torneo, publico);
 //        juego.mostrarResultadosExterno(publico);
         

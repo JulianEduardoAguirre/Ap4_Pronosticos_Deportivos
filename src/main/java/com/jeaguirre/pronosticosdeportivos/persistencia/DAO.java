@@ -20,9 +20,9 @@ public abstract class DAO {
     protected ResultSet resultado;
     protected Statement sentencia;
     
-    private final String USER = "root";
-    private final String PASSWORD = "root";
-    private final String DATABASE = "personas_prode";
+    private String USER = "root";
+    private String PASSWORD = "root";
+    private String DATABASE = "personas_prode";
     private final String DRIVER = "com.mysql.jdbc.Driver";
     
     protected void conectarBase() throws SQLException, ClassNotFoundException {
@@ -62,6 +62,19 @@ public abstract class DAO {
             throw e;
         }
     }  
+
+    public void setUSER(String USER) {
+        this.USER = USER;
+    }
+
+    public void setPASSWORD(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
+    }
+
+    public void setDATABASE(String DATABASE) {
+        this.DATABASE = DATABASE;
+    }
+    
     
     
 }

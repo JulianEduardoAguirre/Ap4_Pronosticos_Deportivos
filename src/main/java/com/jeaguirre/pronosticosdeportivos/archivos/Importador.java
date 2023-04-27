@@ -6,20 +6,35 @@
 package com.jeaguirre.pronosticosdeportivos.archivos;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.*;
 
 /**
  *
  * @author aguir
  */
 public class Importador {
-    private static String basePath = new File("").getAbsolutePath().concat("\\src\\main\\resources\\");
+    private static final String basePath = new File("").getAbsolutePath().concat("\\src\\main\\resources\\");
     
     public static List<String> leerArchivoTxt(String archivo) throws IOException{
         List<String> lineas = Files.readAllLines(Paths.get(basePath + archivo));
         return lineas;
+    }
+    
+    public static JSONObject leerArchivoJson(String archivo) {
+        JSONObject js = null;
+        try {
+            Object ob = new JSONParser().parse(new FileReader(basePath + archivo + ".json"));
+            js = (JSONObject) ob;
+        } catch (IOException | ParseException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return js;
     }
 }

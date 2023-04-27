@@ -25,6 +25,16 @@ public class ApuestaDAO extends DAO{
                             "JOIN ronda ON apuesta.rondaId = ronda.id\n" +
                             "JOIN partido ON apuesta.partidoId = partido.id\n" +
                             "ORDER BY jugador.id, ronda.id, partido.id ASC;";
+
+    public ApuestaDAO(){
+        
+    }
+    
+    public ApuestaDAO(String usuario, String password, String database) {
+        this.setUSER(usuario);
+        this.setPASSWORD(password);
+        this.setDATABASE(database);
+    }
     
     public HashMap<String, Jugador> generarJugadoresDB() throws Exception {
         HashMap<String, Jugador> jugadores = new HashMap();
