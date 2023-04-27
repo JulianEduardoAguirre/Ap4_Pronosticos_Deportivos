@@ -18,8 +18,8 @@ import java.util.HashMap;
  *
  * @author aguir
  */
-public class ApuestaDao extends DAO{
-    
+public class ApuestaDAO extends DAO{
+    //Comentario a sacar
     final String READ = "SELECT jugador.nombre, ronda.nombre, partido.nombre, Elegido, Resultado FROM apuesta\n" +
                             "JOIN jugador ON apuesta.jugadorId = jugador.id\n" +
                             "JOIN ronda ON apuesta.rondaId = ronda.id\n" +

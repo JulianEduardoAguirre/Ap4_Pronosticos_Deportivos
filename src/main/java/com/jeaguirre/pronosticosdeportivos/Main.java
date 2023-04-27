@@ -10,7 +10,7 @@ import com.jeaguirre.pronosticosdeportivos.torneo.Torneo;
 import com.jeaguirre.pronosticosdeportivos.juego.Juego;
 import com.jeaguirre.pronosticosdeportivos.jugador.Jugador;
 import com.jeaguirre.pronosticosdeportivos.jugador.Publico;
-import com.jeaguirre.pronosticosdeportivos.persistencia.ApuestaDao;
+import com.jeaguirre.pronosticosdeportivos.persistencia.ApuestaDAO;
 import java.io.IOException;
 import java.util.HashMap;
 

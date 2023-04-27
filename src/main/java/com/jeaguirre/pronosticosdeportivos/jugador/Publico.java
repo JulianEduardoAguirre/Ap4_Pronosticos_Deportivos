@@ -7,7 +7,7 @@ package com.jeaguirre.pronosticosdeportivos.jugador;
 
 import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumLocalia;
 import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumResultado;
-import com.jeaguirre.pronosticosdeportivos.persistencia.ApuestaDao;
+import com.jeaguirre.pronosticosdeportivos.persistencia.ApuestaDAO;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class Publico {
     }
     
     public void generarJugadoresDB() throws Exception{
-        ApuestaDao dao = new ApuestaDao();
+        ApuestaDAO dao = new ApuestaDAO();
         HashMap<String, Jugador> otrosJugadores = dao.generarJugadoresDB();
         
         this.jugadores = otrosJugadores;
