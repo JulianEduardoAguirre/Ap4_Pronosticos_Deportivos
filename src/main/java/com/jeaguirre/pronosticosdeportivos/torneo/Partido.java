@@ -70,7 +70,7 @@ public class Partido {
 
     @Override
     public String toString() {
-        return id + ", equipos=" + Arrays.toString(equipos) + ", goles=" + Arrays.toString(goles);
+        return equipos[0].toString() + " " + goles[0].toString() + "-" + goles[1].toString() + " " + equipos[1].toString();
     }
     
     
