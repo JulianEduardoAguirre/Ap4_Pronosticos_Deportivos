@@ -10,6 +10,7 @@ import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumResultado;
 import com.jeaguirre.pronosticosdeportivos.persistencia.ApuestaDAO;
 import java.util.HashMap;
 import java.util.List;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -55,11 +56,17 @@ public class Publico {
         HashMap<String, Jugador> otrosJugadores = dao.generarJugadoresDB();
         
         this.jugadores = otrosJugadores;
-//        System.out.println("HOLA");
-//        System.out.println(otrosJugadores);
-//        System.out.println("CHAU");
     }
     
+    public void generarJugadoresDBConfig(JSONObject js) throws Exception{
+        String usuario = (String) js.get("usuario");
+        String password = (String) js.get("password");
+        String database = (String) js.get("database");
+        ApuestaDAO dao = new ApuestaDAO(usuario, password, database);
+        HashMap<String, Jugador> otrosJugadores = dao.generarJugadoresDB();
+        
+        this.jugadores = otrosJugadores;
+    }
     
     
     public HashMap<String, Jugador> getJugadores(){

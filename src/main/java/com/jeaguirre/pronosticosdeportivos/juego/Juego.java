@@ -12,6 +12,7 @@ import com.jeaguirre.pronosticosdeportivos.torneo.Torneo;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -20,7 +21,7 @@ import java.util.Scanner;
 public class Juego {
     
     private Scanner leer = new Scanner(System.in).useDelimiter("\n");
-    private int puntosPorPartido;
+    private Integer puntosPorPartido;
     private Torneo torneo;
     private Publico publico;
     
@@ -28,7 +29,7 @@ public class Juego {
         puntosPorPartido = 3;
     }
     
-    public void setPuntoPorPartido(int valor){
+    public void setPuntoPorPartido(Integer valor){
         if(valor >= 1 && valor < 10){
             puntosPorPartido = valor;
         }
@@ -52,11 +53,16 @@ public class Juego {
         this.torneo = new Torneo("Primer torneo");
         torneo.generarTorneo(Importador.leerArchivoTxt(archivoTorneo + ".txt"));
         
+        //Lectura del archivo de configuraciones
+        JSONObject configuraciones = Importador.leerArchivoJson(archivoConfiguracion);
+        
+        this.puntosPorPartido = Math.toIntExact((long) configuraciones.get("puntosPorPartido"));
+        
         //Generación del público desde la BBDD
         this.publico = new Publico();
 //      publico.generarJugadores(Importador.leerArchivoTxt(archivoPronostico));
-        publico.generarJugadoresDB();
-        System.out.println(publico.getJugadores().toString());
+//      publico.generarJugadoresDB();
+        publico.generarJugadoresDBConfig(configuraciones);
         
         
         
