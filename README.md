@@ -80,3 +80,18 @@ Se recomienda analizar qué estrategia se puede aplicar para incluir otras nueva
 En esta entrega, el programa debe:
  * Estar actualizado en el repositorio de GitHub
  * Recibir como argumento un archivo con los resultados y otro con configuración (conexión a la BBDD, puntaje por partido ganado, puntos extra, etc)
+ 
+ Los pronósiticos se leen desde la base de datos local, utilizando las librerías de conexión MySQL para java, a través de métodos dentro de la clase Publico.
+ Para ello, también se crea el paquete "persistencia", en donde se genera una clase abstracta DAO, con las variables que hacen a la configuración de la conextión, el driver y la ruta. También se implementan los métodos de conexión, consulta y desconexión. Luego, para el caso de las entradas de la base de datos, se crea una subclase de DAO: ApuestaDAO, desde la cual se consulta a la tabla correspondiente en la BBDD (con este objeto, se reutiliza la rutina para crear objetos Jugador)
+ 
+ La generación del Juego final se hace desde la misma clase Juego, a través de métodos preparados para pedir los archivos de "resultados" y uno de "configuracion" (txt y json respectivamente). Para la generación de los jugadores (Publico), se utiliza el método de consulta a la BBDD mencionado en el párrafo anterior.
+ 
+ Para leer el archivo de configuraciones (JSON), se agrega un método a la clase Importador, la cual lee el archivo y devuelve un JSONObject, para procesarse dentro de la clase Juego y ser pasado a otro método de ApuestaDAO.
+ 
+ ****
+ *FUTURAS IMPLEMENTACIONES
+ - Suma de puntos extra por acierto de todos los partidos de una ronda.
+ - Testing
+ - Iteración con el usuario al ingresar archivos no válidos o inexistentes
+ - Manejo de casos en que los datos inconsistentes en el archivo "resultado"
+ 
