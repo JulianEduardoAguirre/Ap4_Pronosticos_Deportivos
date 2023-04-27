@@ -8,7 +8,6 @@ package com.jeaguirre.pronosticosdeportivos.torneo;
 import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumLocalia;
 import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumEquipo;
 import com.jeaguirre.pronosticosdeportivos.enumeraciones.EnumResultado;
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -70,7 +69,7 @@ public class Partido {
 
     @Override
     public String toString() {
-        return id + ", equipos=" + Arrays.toString(equipos) + ", goles=" + Arrays.toString(goles);
+        return equipos[0].toString() + " " + goles[0].toString() + "-" + goles[1].toString() + " " + equipos[1].toString();
     }
     
     
