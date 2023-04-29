@@ -89,9 +89,11 @@ En esta entrega, el programa debe:
  Para leer el archivo de configuraciones (JSON), se agrega un método a la clase Importador, la cual lee el archivo y devuelve un JSONObject, para procesarse dentro de la clase Juego y ser pasado a otro método de ApuestaDAO.
  
  ****
- FUTURAS IMPLEMENTACIONES
+ IMPLEMENTACIONES FALTANTES
  - Suma de puntos extra por acierto de todos los partidos de una ronda.
  - Testing
  - Iteración con el usuario al ingresar archivos no válidos o inexistentes
  - Manejo de casos en que los datos inconsistentes en el archivo "resultado"
+ 
+ El listado de implementaciones anterior, junto a otras características del programa, se agregarán en la nueva rama 'entrega4'.
  
